@@ -133,7 +133,7 @@ const ExcelForm = () => {
     e.preventDefault(); // Prevents the default form submission behavior
 
     try {
-      const response = await axios.post('https://billing-form.onrender.com', { formData });
+      const response = await axios.post('https://billing-form.onrender.com/submitData', { formData });
       console.log(response.data);
       toast.success('Data submitted and updated successfully');
 
