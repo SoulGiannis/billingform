@@ -1,0 +1,54 @@
+
+body{
+    background-color: #343541;
+    color: white;
+}
+
+.main-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    max-width: 700px;
+    margin-left: 200px;
+    font-family: 'Exo 2', sans-serif;
+    font-weight: bold;
+    text-shadow: 1px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.main-container label {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-container input {
+    margin-top: 4px;
+}
+
+button {
+    grid-column: span 2;
+}
+.input-common{
+    font-family: 'Roboto Slab', serif;
+    border: none;
+    border-bottom: 3px solid black;
+    background-color: #343541;
+    outline: none;
+    color: #fff;
+    border-radius: 30px;
+}
+.btn{
+    background-color: black;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    color: white;
+    outline: none;
+    height: 50px;
+    font-family: 'Roboto Slab', serif;
+    font-weight: bold;
+    font-size: large;
+}
+.btn:hover{
+    background-color: #4c4c56;
+    box-shadow: 4px 0px 13px rgba(0, 0, 0, 0.5);
+}
