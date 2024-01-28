@@ -11,7 +11,7 @@ const port = 3001;
 app.use(cors());
 app.use(bodyParser.json());
 
-const filePath = path.join(__dirname, 'data.xlsx');
+const filePath = 'C:/Users/rishabh/Desktop/data.xlsx';
 
 app.post('/submitData', (req, res) => {
   const formData = req.body.formData;
