@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "./Global.css"
 
 const billingRuleTypeOptions = [
@@ -127,18 +129,41 @@ const ExcelForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 // http://localhost:3001/submitData
-  const handleDownload = () => {
-    axios.post('http://localhost:3001/submitData', { formData })
-      .then(response => {
-        console.log(response.data);
-      })
-      .catch(error => {
-        console.error('Error submitting data:', error);
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevents the default form submission behavior
+
+    try {
+      const response = await axios.post('https://billing-form.onrender.com', { formData });
+      console.log(response.data);
+      toast.success('Data submitted and updated successfully');
+
+      // Reset form fields to empty values
+      setFormData({
+        name: '',
+        billingRuleType: '',
+        lienTypes: '',
+        collectorSpecific: '',
+        firstProductPrice: '',
+        firstProductLikelihood: '',
+        firstProdExpColDate: '',
+        secondProductPrice: '',
+        secondProductLikelihood: '',
+        secondProdExpColDate: '',
+        subseqProductPrice: '',
+        subseqProductLikelihood: '',
+        subseqProdExpColDate: '',
+        pricingTriggers: '',
+        billingTriggers: '',
       });
+    } catch (error) {
+      console.error('Error submitting data:', error);
+      toast.error('Error submitting data. Please try again.');
+    }
   };
 
+
   return (
-    <form className='main-container'>
+    <form className='main-container' onSubmit={handleSubmit}>
       <label>
         Name*
         <input className='input-common' type="text" name="name" value={formData.name} onChange={handleChange} required/>
@@ -234,7 +259,8 @@ const ExcelForm = () => {
           ))}
       </select>
   </label>
-      <button className='btn' onClick={handleDownload}>Submit and Update Excel</button>
+      <button className='btn' type="submit">Submit and Update Excel</button>
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
   </form>
   );
 };
